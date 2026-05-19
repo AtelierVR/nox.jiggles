@@ -1,0 +1,28 @@
+{
+  "type": "mod",
+  "id": "nox.jiggles",
+  "provides": [],
+  "name": "Jiggles",
+  "version": "1.0.0",
+  "description": "Initializes jiggle physics on the client by creating a JiggleUpdateExample updater.",
+  "license": "GPL-3.0",
+  "icon": null,
+  "contact": {
+    "email": "hactazia@gmail.com"
+  },
+  "authors": [
+    {
+      "name": "Hactazia",
+      "email": "hactazia@gmail.com"
+    }
+  ],
+  "contributors": [],
+  "relations": [],
+  "entrypoints": {
+    "client": [
+      "Nox.Jiggles.Client"
+    ]
+  },
+  "references": [],
+  "permissions": []
+}

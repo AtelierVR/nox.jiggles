@@ -1,0 +1,18 @@
+{
+    "name": "Nox.Jiggles",
+    "rootNamespace": "Nox.Jiggles",
+    "references": [
+        "Nox.CCK",
+        "UniTask",
+        "com.gator-dragon-games.jigglephysics"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
