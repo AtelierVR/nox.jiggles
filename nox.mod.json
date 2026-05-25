@@ -4,7 +4,7 @@
   "provides": [],
   "name": "Jiggles",
   "version": "1.0.0",
-  "description": "Initializes jiggle physics on the client by creating a JiggleUpdateExample updater.",
+  "description": "Client-side jiggle physics for avatar secondary motion dynamics.",
   "license": "GPL-3.0",
   "icon": null,
   "contact": {
