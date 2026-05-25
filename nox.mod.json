@@ -16,13 +16,9 @@
       "email": "hactazia@gmail.com"
     }
   ],
-  "contributors": [],
-  "relations": [],
   "entrypoints": {
     "client": [
       "Nox.Jiggles.Client"
     ]
-  },
-  "references": [],
-  "permissions": []
+  }
 }
