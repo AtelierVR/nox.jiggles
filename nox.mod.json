@@ -1,7 +1,6 @@
 {
   "type": "mod",
   "id": "nox.jiggles",
-  "provides": [],
   "name": "Jiggles",
   "version": "1.0.0",
   "description": "Client-side jiggle physics for avatar secondary motion dynamics.",
