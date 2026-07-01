@@ -1,14 +1,14 @@
 {
-    "name": "Nox.Jiggles",
-    "rootNamespace": "Nox.Jiggles",
+    "name": "Nox.CCK.Jiggles.Editor",
+    "rootNamespace": "Nox.CCK.Jiggles.Editor",
     "references": [
-        "Nox.CCK",
         "Nox.CCK.Jiggles",
-        "Nox.Avatars",
-        "UniTask",
+        "Nox.CCK.Editor",
         "com.gator-dragon-games.jigglephysics"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

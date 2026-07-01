@@ -1,12 +1,12 @@
 {
-    "name": "Nox.Jiggles",
-    "rootNamespace": "Nox.Jiggles",
+    "name": "Nox.CCK.Jiggles",
+    "rootNamespace": "Nox.CCK.Jiggles",
     "references": [
-        "Nox.CCK",
-        "Nox.CCK.Jiggles",
         "Nox.Avatars",
-        "UniTask",
-        "com.gator-dragon-games.jigglephysics"
+        "Nox.CCK",
+        "com.gator-dragon-games.jigglephysics",
+        "Unity.Mathematics",
+        "UniTask"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

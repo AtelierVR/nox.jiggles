@@ -1,0 +1,24 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements"
+         xsi="http://www.w3.org/2001/XMLSchema-instance"
+         engine="UnityEngine.UIElements" editor="UnityEditor.UIElements">
+
+    <!-- ── Transform ──────────────────────────────────────────────── -->
+    <ui:Foldout text="Transform" name="foldout-transform" value="true">
+        <uie:PropertyField name="prop-transform" label="Target Transform" />
+        <uie:PropertyField name="prop-offset" label="Offset" />
+    </ui:Foldout>
+
+    <!-- ── Collider Shape ─────────────────────────────────────────── -->
+    <ui:Foldout text="Collider Shape" name="foldout-shape" value="true">
+        <uie:PropertyField name="prop-type" label="Type" />
+        <uie:PropertyField name="prop-radius" label="Radius" />
+        <ui:VisualElement name="group-capsule" style="display:none;">
+            <uie:PropertyField name="prop-height" label="Height" />
+        </ui:VisualElement>
+        <uie:PropertyField name="prop-offset-rotation" label="Offset Rotation" />
+    </ui:Foldout>
+
+    <!-- ── Preview ────────────────────────────────────────────────── -->
+    <ui:HelpBox name="helpbox-preview" text="" message-type="Info" />
+
+</ui:UXML>

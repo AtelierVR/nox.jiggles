@@ -1,0 +1,15 @@
+/* ── Section Spacing ──────────────────────────────────────────── */
+.unity-foldout {
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.unity-foldout > .unity-toggle {
+    font-weight: bold;
+}
+
+/* ── Preview ──────────────────────────────────────────────────── */
+#helpbox-preview {
+    margin-top: 8px;
+    white-space: pre-wrap;
+}
