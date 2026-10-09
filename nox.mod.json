@@ -24,7 +24,7 @@
     {
       "id": "com.gator-dragon-games.jigglephysics",
       "type": "depends",
-      "register": "git+https://github.com/naelstrof/JigglePhysics.git#upm"
+      "register": "git+https://github.com/naelstrof/JigglePhysics.git?path=/Packages/com.gator-dragon-games.jigglephysics"
     }
   ],
   "entrypoints": {
