@@ -15,6 +15,18 @@
       "email": "hactazia@gmail.com"
     }
   ],
+  "relations": [
+    {
+      "id": "avatar",
+      "type": "depends",
+      "register": "git+https://github.com/AtelierVR/nox.avatars.git"
+    },
+    {
+      "id": "com.gator-dragon-games.jigglephysics",
+      "type": "depends",
+      "register": "git+https://github.com/naelstrof/JigglePhysics.git#upm"
+    }
+  ],
   "entrypoints": {
     "client": [
       "Nox.Jiggles.Client"
