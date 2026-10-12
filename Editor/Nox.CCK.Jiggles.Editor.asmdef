@@ -3,6 +3,7 @@
     "rootNamespace": "Nox.CCK.Jiggles.Editor",
     "references": [
         "Nox.CCK.Jiggles",
+        "Nox.CCK.Jiggles.Avatars",
         "Nox.CCK.Editor",
         "com.gator-dragon-games.jigglephysics"
     ],

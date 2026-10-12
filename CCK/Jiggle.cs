@@ -1,18 +1,35 @@
 using System.Collections.Generic;
 using GatorDragonGames.JigglePhysics;
+using Nox.Jiggles;
 using UnityEngine;
 using Gizmos = Nox.CCK.Development.Gizmos;
 
 namespace Nox.CCK.Jiggles {
     /// <summary>
     /// CCK component that extends <see cref="JiggleRig"/> for use as an avatar jiggle rig.
-    /// Inherits all JiggleRig configuration and behaviour.
-    /// Lifecycle is driven by <see cref="JiggleModule"/>.
+    /// Inherits all JiggleRig configuration and behaviour, plus the CCK collider gizmos.
+    /// Lifecycle is driven by <c>JiggleModule</c> (see <see cref="JiggleRigExtensions"/>).
     /// </summary>
     [DisallowMultipleComponent]
-    public class Jiggle : JiggleRig {
+    public class Jiggle : JiggleRig, IJiggle {
         [SerializeField]
         private List<Collider> jiggleColliders = new();
+
+        /// <inheritdoc />
+        public bool IsSuspended
+            => JiggleRigExtensions.IsSuspended(this);
+
+        /// <inheritdoc />
+        public void Suspend()
+            => JiggleRigExtensions.Suspend(this);
+
+        /// <inheritdoc />
+        public void Resume()
+            => JiggleRigExtensions.Resume(this);
+
+        /// <inheritdoc />
+        public void Resync()
+            => JiggleRigExtensions.Resync(this);
 
         private void Reset() {
             FallbackRootBone();

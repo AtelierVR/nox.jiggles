@@ -4,6 +4,7 @@
     "references": [
         "Nox.Avatars",
         "Nox.CCK",
+        "Nox.Jiggles",
         "com.gator-dragon-games.jigglephysics",
         "Unity.Mathematics",
         "UniTask"

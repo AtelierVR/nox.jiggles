@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements"
+         xsi="http://www.w3.org/2001/XMLSchema-instance"
+         engine="UnityEngine.UIElements" editor="UnityEditor.UIElements">
+
+    <!-- One rig driven by the module: the state of its data, then the rig component as a read-only reference.
+         Cloned by JiggleModuleEditor for every rig of the module. -->
+    <ui:VisualElement name="rig-row" class="flex-row align-center">
+        <uie:ObjectField name="rig-field" class="readonly flex-grow mx-0" />
+    </ui:VisualElement>
+
+</ui:UXML>

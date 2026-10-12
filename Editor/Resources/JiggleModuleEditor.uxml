@@ -1,0 +1,33 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements"
+         xsi="http://www.w3.org/2001/XMLSchema-instance"
+         engine="UnityEngine.UIElements" editor="UnityEditor.UIElements">
+
+    <Style src="project://database/Packages/nox.cck/Resources/nox.style.uss?fileID=7433441132597879392&amp;guid=956d93e835714844b98277f4fdbd77d3&amp;type=3#nox.style" />
+    <Style src="project://database/Packages/nox.loader/Resources/nox.cck.style.uss?fileID=7433441132597879392&amp;guid=ee18ab989d89a1a479332bd224e51c94&amp;type=3#nox.cck.style" />
+
+    <!-- Summary: the group the module drives and its flag.
+         The elements carry a lang-key: their text is the language entry, the arguments come from the editor. -->
+    <ui:VisualElement name="header" class="flex-col bg-secondary border m-8 p-4 rounded-md">
+        <uie:LocalizedLabel name="label-group" lang-key="jiggles.inspector.group" />
+        <uie:LocalizedLabel name="label-flag" lang-key="jiggles.inspector.enabled" />
+    </ui:VisualElement>
+
+    <!-- Rigs still on the JigglePhysics component: driven, but not converted to the CCK Jiggle.
+         Same notification as the avatars/worlds BuilderPanel (nox.cck.style.uss). -->
+    <ui:VisualElement name="warning-rigs" class="notification notification-warning m-8" style="display: none;">
+        <ui:VisualElement name="icon" class="icon" />
+        <uie:LocalizedLabel name="label-warning" class="label" lang-key="jiggles.inspector.warning_unconverted" />
+    </ui:VisualElement>
+
+    <!-- Rigs the module drives, one row each (see JiggleModuleEditor.Rig.uxml).
+         m-8 + foldout-flush: the foldout and its rows end on the same margins as the boxes above. -->
+    <uie:LocalizedFoldout name="foldout-rigs" class="foldout-flush m-8" lang-key="jiggles.inspector.rigs" value="true">
+        <ui:VisualElement name="list-rigs" class="flex-col" />
+    </uie:LocalizedFoldout>
+
+    <!-- Colliders the module registers with the simulation (see JiggleModuleEditor.Collider.uxml). -->
+    <uie:LocalizedFoldout name="foldout-colliders" class="foldout-flush m-8" lang-key="jiggles.inspector.colliders" value="true">
+        <ui:VisualElement name="list-colliders" class="flex-col" />
+    </uie:LocalizedFoldout>
+
+</ui:UXML>

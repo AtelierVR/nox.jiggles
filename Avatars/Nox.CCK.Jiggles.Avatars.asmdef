@@ -1,0 +1,23 @@
+{
+    "name": "Nox.CCK.Jiggles.Avatars",
+    "rootNamespace": "Nox.CCK.Jiggles.Avatars",
+    "references": [
+        "Nox.Avatars",
+        "Nox.CCK",
+        "Nox.CCK.Jiggles",
+        "Nox.Jiggles",
+        "Nox.Jiggles.Avatars",
+        "Nox.Avatars.Scale",
+        "com.gator-dragon-games.jigglephysics",
+        "UniTask"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

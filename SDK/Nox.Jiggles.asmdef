@@ -1,0 +1,16 @@
+{
+    "name": "Nox.Jiggles",
+    "rootNamespace": "Nox.Jiggles",
+    "references": [
+        "Nox.Avatars"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

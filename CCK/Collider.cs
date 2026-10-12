@@ -6,7 +6,7 @@ namespace Nox.CCK.Jiggles {
     /// <summary>
     /// CCK component that registers a JigglePhysics collider (sphere, capsule or plane)
     /// into the global JigglePhysics system.
-    /// This is a passive data component — the actual lifecycle is driven by <see cref="JiggleModule"/>.
+    /// This is a passive data component — the actual lifecycle is driven by <c>JiggleModule</c>.
     /// </summary>
     [DisallowMultipleComponent]
     public class Collider : MonoBehaviour {

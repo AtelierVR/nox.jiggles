@@ -1,6 +1,10 @@
 {
   "type": "mod",
   "id": "nox.jiggles",
+  "provides": [
+    "fr.hactazia.jiggles",
+    "jiggles"
+  ],
   "name": "Jiggles",
   "version": "1.0.0",
   "description": "Client-side jiggle physics for avatar secondary motion dynamics.",
@@ -25,11 +29,19 @@
       "id": "com.gator-dragon-games.jigglephysics",
       "type": "depends",
       "register": "git+https://github.com/naelstrof/JigglePhysics.git?path=/Packages/com.gator-dragon-games.jigglephysics"
+    },
+    {
+      "id": "nox.avatars.modules",
+      "type": "depends",
+      "register": "git+https://github.com/AtelierVR/nox.avatars.modules.git"
     }
   ],
   "entrypoints": {
+    "main": [
+      "Nox.Jiggles.Runtime.Main"
+    ],
     "client": [
-      "Nox.Jiggles.Client"
+      "Nox.Jiggles.Runtime.Client"
     ]
   }
 }

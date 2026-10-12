@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 776389e82c640c44086d3baf10dd1c7b, type: 3}
+  m_Name: lang
+  m_EditorClassIdentifier: Nox.CCK::Nox.CCK.Language.LanguagePack
+  languages:
+  - IETF: en-US
+    entries:
+    - key: jiggles.inspector.title
+      value: "Jiggle Module"
+    - key: jiggles.inspector.group
+      value: "Group: {0}"
+    - key: jiggles.inspector.group_pending
+      value: "(resolved when the avatar loads)"
+    - key: jiggles.inspector.enabled
+      value: "Enabled: {0}"
+    - key: jiggles.inspector.rigs
+      value: "Rigs ({0})"
+    - key: jiggles.inspector.colliders
+      value: "Colliders ({0})"
+    - key: jiggles.inspector.no_rigs
+      value: "No jiggle rig under this module: it has nothing to simulate."
+    - key: jiggles.inspector.no_colliders
+      value: "No jiggle collider under this module."
+    - key: jiggles.inspector.warning_unconverted
+      value: "{0} rig(s) are still JigglePhysics JiggleRig: driven, but not converted.\nUse GameObject/Nox/Convert to CCK Jiggles/JiggleRig -> Jiggle to get the CCK tooling."
+  - IETF: fr-FR
+    entries:
+    - key: jiggles.inspector.title
+      value: "Module de jiggle"
+    - key: jiggles.inspector.group
+      value: "Groupe : {0}"
+    - key: jiggles.inspector.group_pending
+      value: "(résolu au chargement de l'avatar)"
+    - key: jiggles.inspector.enabled
+      value: "Activé : {0}"
+    - key: jiggles.inspector.rigs
+      value: "Rigs ({0})"
+    - key: jiggles.inspector.colliders
+      value: "Colliders ({0})"
+    - key: jiggles.inspector.no_rigs
+      value: "Aucun rig de jiggle sous ce module : il n'a rien à simuler."
+    - key: jiggles.inspector.no_colliders
+      value: "Aucun collider de jiggle sous ce module."
+    - key: jiggles.inspector.warning_unconverted
+      value: "{0} rig(s) sont encore des JiggleRig JigglePhysics : pilotés, mais non convertis.\nUtilisez GameObject/Nox/Convert to CCK Jiggles/JiggleRig -> Jiggle pour bénéficier de l'outillage CCK."

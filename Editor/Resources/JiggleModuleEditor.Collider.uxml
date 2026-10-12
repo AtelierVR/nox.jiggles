@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements"
+         xsi="http://www.w3.org/2001/XMLSchema-instance"
+         engine="UnityEngine.UIElements" editor="UnityEditor.UIElements">
+
+    <!-- One collider registered with the simulation, as a read-only reference.
+         Cloned by JiggleModuleEditor for every collider of the module. -->
+    <uie:ObjectField name="collider-field" class="readonly flex-grow mx-0" />
+
+</ui:UXML>
