@@ -46,7 +46,7 @@ namespace Nox.CCK.Jiggles {
         /// <summary>
         /// Rebuilds the simulation from the current pose: the rig is unregistered then registered again, which
         /// dirties its tree, so the jobs re-seed the simulated points at the animated positions and drop any
-        /// offset accumulated while the avatar moved (teleport, rescale, load, …).
+        /// offset accumulated while the avatar moved (teleport, rescale, load, ...).
         /// A no-op while suspended (the rebuild happens on <see cref="Resume"/>) or without a root bone.
         /// </summary>
         public static void Resync(this JiggleRig rig) {
