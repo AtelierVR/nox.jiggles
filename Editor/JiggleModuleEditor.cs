@@ -13,7 +13,6 @@ namespace Nox.CCK.Jiggles.Editor {
     /// from the avatar and the group is the avatar descriptor id — so there is nothing to serialize: the
     /// inspector shows a read-only summary (group, flag, rigs and colliders) instead.
     /// </summary>
-    [CustomEditor(typeof(JiggleModule))]
     public class JiggleModuleEditor : LocalizedInspectorEditor<JiggleModule> {
         protected override string TitleKey => "jiggles.inspector.title";
 

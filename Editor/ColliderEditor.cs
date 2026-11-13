@@ -4,10 +4,11 @@ using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Logger = Nox.CCK.Utils.Logger;
 
 namespace Nox.CCK.Jiggles.Editor {
-    [CustomEditor(typeof(Collider))]
     public class ColliderEditor : InspectorEditor<Collider> {
+        public const string LogTag = "JigglesColliderEditor";
         private SerializedProperty _jiggleCollider;
         private SerializedProperty _transform;
         private SerializedProperty _offset;
@@ -66,7 +67,7 @@ namespace Nox.CCK.Jiggles.Editor {
         private void BindProp(VisualElement root, string elementName, SerializedProperty prop) {
             var el = root.Q<PropertyField>(elementName);
             if (el != null && prop != null) el.BindProperty(prop);
-            else if (el != null) Debug.LogWarning($"[ColliderEditor] Property '{elementName}' not found.");
+            else if (el != null) Logger.LogWarning($"Property '{elementName}' not found.", tag: LogTag);
         }
 
         private void BindShapeToggle(VisualElement root) {

@@ -1,73 +1,145 @@
 using GatorDragonGames.JigglePhysics;
 using UnityEditor;
 using UnityEngine;
+using Logger = Nox.CCK.Utils.Logger;
 
 namespace Nox.CCK.Jiggles.Editor {
     public static class JiggleConversionMenus {
         private const string ConvertMenuPath = "GameObject/Nox/Convert to CCK Jiggles/";
 
+        public const string LogTag = nameof(JiggleConverter);
+
         // ── JiggleRig → Jiggle ────────────────────────────────────────────────
 
         [MenuItem(ConvertMenuPath + "JiggleRig → Jiggle", false, 0)]
         private static void ConvertJiggleRigToJiggle() {
-            foreach (var go in Selection.gameObjects) {
-                ConvertJiggleRigOnGameObject(go);
-            }
+            var count = 0;
+
+            foreach (var go in Selection.gameObjects)
+                count += ConvertJiggleRigsUnder(go);
+
+            if (count == 0)
+                Logger.LogWarning("Nothing to convert: no JiggleRig found under the selection.", tag: LogTag);
         }
 
         [MenuItem(ConvertMenuPath + "JiggleRig → Jiggle", true)]
-        private static bool ConvertJiggleRigToJiggleValidate()
-            => HasComponentOnSelection<JiggleRig>() && !HasComponentOnSelection<Jiggle>();
+        private static bool ConvertJiggleRigToJiggleValidate() {
+            foreach (var go in Selection.gameObjects) {
+                if (!go)
+                    continue;
 
-        private static void ConvertJiggleRigOnGameObject(GameObject go) {
-            var rig = go.GetComponent<JiggleRig>();
-            if (rig == null || go.GetComponent<Jiggle>() != null)
-                return;
+                foreach (var rig in go.GetComponentsInChildren<JiggleRig>(true)) {
+                    if (!rig || rig is Jiggle)
+                        continue;
 
-            // Read private jiggleRigData and animatedParameters via SerializedObject
-            var so = new SerializedObject(rig);
-            var dataProp = so.FindProperty("jiggleRigData");
-            var animProp = so.FindProperty("animatedParameters");
+                    return true;
+                }
+            }
 
-            // Add Jiggle component
-            var jiggle = Undo.AddComponent<Jiggle>(go);
+            return false;
+        }
 
-            // Copy serialized data to the new Jiggle
-            var jiggleSo = new SerializedObject(jiggle);
-            var jiggleDataProp = jiggleSo.FindProperty("jiggleRigData");
-            var jiggleAnimProp = jiggleSo.FindProperty("animatedParameters");
+        /// <summary>
+        /// Converts every rig of the hierarchy that is not a <see cref="Jiggle"/> yet: selecting a parent
+        /// converts all of its jiggles at once.
+        /// </summary>
+        private static int ConvertJiggleRigsUnder(GameObject root) {
+            if (!root)
+                return 0;
 
-            if (dataProp != null && jiggleDataProp != null)
-                CopyProperty(dataProp, jiggleDataProp);
-            if (animProp != null && jiggleAnimProp != null)
-                CopyProperty(animProp, jiggleAnimProp);
+            var count = 0;
 
-            jiggleSo.ApplyModifiedPropertiesWithoutUndo();
+            foreach (var rig in root.GetComponentsInChildren<JiggleRig>(true)) {
+                if (!rig || rig is Jiggle)
+                    continue;
 
-            // Remove original JiggleRig
+                ConvertJiggleRig(rig);
+                count++;
+            }
+
+            return count;
+        }
+
+        private static void ConvertJiggleRig(JiggleRig rig) {
+            var go       = rig.gameObject;
+            var data     = rig.GetJiggleRigData();
+            var animated = rig.HasAnimatedParameters;
+
+            // The old rig unregisters when it goes away: drop it before the new one registers on the same root
+            // (JigglePhysics refuses two trees on one root transform).
+            rig.enabled = false;
             Undo.DestroyObjectImmediate(rig);
 
+            // In play mode the rig initializes in OnEnable: keep the GameObject inactive until its data is set,
+            // otherwise the component registers (or throws) with an empty rig.
+            var wasActive = go.activeSelf;
+            if (Application.isPlaying && wasActive)
+                go.SetActive(false);
+
+            // Add Jiggle component and carry the rig data over
+            var jiggle = Undo.AddComponent<Jiggle>(go);
+            Undo.RecordObject(jiggle, "Convert JiggleRig → Jiggle");
+            jiggle.Configure(data);
+            jiggle.HasAnimatedParameters = animated;
+            EditorUtility.SetDirty(jiggle);
+
+            if (wasActive)
+                go.SetActive(true);
+
             EditorUtility.SetDirty(go);
-            Debug.Log($"[Nox.CCK.Jiggles] Converted JiggleRig → Jiggle on '{go.name}'.", go);
+            Logger.Log($"Converted JiggleRig → Jiggle on '{go.name}'.", go, tag: LogTag);
         }
 
         // ── JiggleColliderExample → Collider ──────────────────────────────────
 
         [MenuItem(ConvertMenuPath + "ColliderExample → Collider", false, 1)]
         private static void ConvertColliderExampleToCollider() {
-            foreach (var go in Selection.gameObjects) {
-                ConvertColliderExampleOnGameObject(go);
-            }
+            var count = 0;
+
+            foreach (var go in Selection.gameObjects)
+                count += ConvertColliderExamplesUnder(go);
+
+            if (count == 0)
+                Logger.LogWarning("Nothing to convert: no JiggleColliderExample found under the selection.", tag: LogTag);
         }
 
         [MenuItem(ConvertMenuPath + "ColliderExample → Collider", true)]
-        private static bool ConvertColliderExampleToColliderValidate()
-            => HasComponentOnSelection<JiggleColliderExample>() && !HasComponentOnSelection<Collider>();
+        private static bool ConvertColliderExampleToColliderValidate() {
+            foreach (var go in Selection.gameObjects) {
+                if (!go)
+                    continue;
 
-        private static void ConvertColliderExampleOnGameObject(GameObject go) {
-            var example = go.GetComponent<JiggleColliderExample>();
-            if (example == null || go.GetComponent<Collider>() != null)
-                return;
+                foreach (var example in go.GetComponentsInChildren<JiggleColliderExample>(true))
+                    if (example && !example.GetComponent<Collider>())
+                        return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Converts every collider of the hierarchy that has no CCK <see cref="Collider"/> yet: selecting a
+        /// parent converts all of its colliders at once.
+        /// </summary>
+        private static int ConvertColliderExamplesUnder(GameObject root) {
+            if (!root)
+                return 0;
+
+            var count = 0;
+
+            foreach (var example in root.GetComponentsInChildren<JiggleColliderExample>(true)) {
+                if (!example || example.GetComponent<Collider>())
+                    continue;
+
+                ConvertColliderExample(example);
+                count++;
+            }
+
+            return count;
+        }
+
+        private static void ConvertColliderExample(JiggleColliderExample example) {
+            var go = example.gameObject;
 
             // Read private jiggleCollider via SerializedObject
             var so = new SerializedObject(example);
@@ -85,22 +157,15 @@ namespace Nox.CCK.Jiggles.Editor {
 
             colliderSo.ApplyModifiedPropertiesWithoutUndo();
 
-            // Remove original JiggleColliderExample
+            // Remove original JiggleColliderExample: it unregisters itself, the CCK collider is registered by
+            // the avatar module when the avatar is enabled.
             Undo.DestroyObjectImmediate(example);
 
             EditorUtility.SetDirty(go);
-            Debug.Log($"[Nox.CCK.Jiggles] Converted JiggleColliderExample → Collider on '{go.name}'.", go);
+            Logger.Log($"Converted JiggleColliderExample → Collider on '{go.name}'.", go, tag: LogTag);
         }
 
         // ── Helpers ───────────────────────────────────────────────────────────
-
-        private static bool HasComponentOnSelection<T>() where T : Component {
-            foreach (var go in Selection.gameObjects) {
-                if (go.GetComponent<T>() != null)
-                    return true;
-            }
-            return false;
-        }
 
         /// <summary>
         /// Deep-copies a SerializedProperty from source to target by walking its children.
@@ -134,7 +199,7 @@ namespace Nox.CCK.Jiggles.Editor {
                         } while (srcIter.NextVisible(false) && !SerializedProperty.EqualContents(srcIter, srcEnd));
 
                         if (!found) {
-                            Debug.LogWarning($"[JiggleConversion] Could not find matching property '{dstChild.name}' in source.");
+                            Logger.LogWarning($"Could not find matching property '{dstChild.name}' in source.", tag: LogTag);
                         }
                     } while (dstChild.NextVisible(false) && !SerializedProperty.EqualContents(dstChild, dstEnd));
                     break;
@@ -195,7 +260,7 @@ namespace Nox.CCK.Jiggles.Editor {
                     // Fallback: use managedReferenceValue for class types
                     if (src.isArray) {
                         dst.arraySize = src.arraySize;
-                        for (int i = 0; i < src.arraySize; i++)
+                        for (var i = 0; i < src.arraySize; i++)
                             CopyProperty(src.GetArrayElementAtIndex(i), dst.GetArrayElementAtIndex(i));
                     }
                     break;

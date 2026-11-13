@@ -33,6 +33,10 @@ MonoBehaviour:
       value: "No jiggle collider under this module."
     - key: jiggles.inspector.warning_unconverted
       value: "{0} rig(s) are still JigglePhysics JiggleRig: driven, but not converted.\nUse GameObject/Nox/Convert to CCK Jiggles/JiggleRig -> Jiggle to get the CCK tooling."
+    - key: jiggles.inspector.add_parameters
+      value: "Add to avatar parameters"
+    - key: jiggles.inspector.copy_parameter_names
+      value: "Copy names"
   - IETF: fr-FR
     entries:
     - key: jiggles.inspector.title
@@ -53,3 +57,7 @@ MonoBehaviour:
       value: "Aucun collider de jiggle sous ce module."
     - key: jiggles.inspector.warning_unconverted
       value: "{0} rig(s) sont encore des JiggleRig JigglePhysics : pilotés, mais non convertis.\nUtilisez GameObject/Nox/Convert to CCK Jiggles/JiggleRig -> Jiggle pour bénéficier de l'outillage CCK."
+    - key: jiggles.inspector.add_parameters
+      value: "Ajouter aux paramètres de l'avatar"
+    - key: jiggles.inspector.copy_parameter_names
+      value: "Copier les noms"
