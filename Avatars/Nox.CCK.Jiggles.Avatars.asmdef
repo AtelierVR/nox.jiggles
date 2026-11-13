@@ -3,6 +3,7 @@
     "rootNamespace": "Nox.CCK.Jiggles.Avatars",
     "references": [
         "Nox.Avatars",
+        "Nox.Avatars.Parameters",
         "Nox.CCK",
         "Nox.CCK.Jiggles",
         "Nox.Jiggles",

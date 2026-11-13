@@ -32,7 +32,7 @@ namespace Nox.Jiggles.Avatars {
 
         /// <summary>
         /// Rebuilds every rig from the current pose: the simulated points are re-seeded at the animated bone
-        /// positions, dropping any offset accumulated while the avatar moved (teleport, rescale, load, …).
+        /// positions, dropping any offset accumulated while the avatar moved (teleport, rescale, load, ...).
         /// A no-op while the jiggles are disabled.
         /// </summary>
         void Resync();
